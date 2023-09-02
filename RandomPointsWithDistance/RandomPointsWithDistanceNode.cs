@@ -110,6 +110,8 @@ namespace InsaneScatterbrain.MapGraph
                 
             for (int i = 0; i < pointCount; i++)
             {
+                if (availableTiles.Count == 0) break;
+                
                 int index = availableTiles.GetRandomElement();
                 textureData[index] = fillColor;
                 availableTiles.Remove(index);
@@ -119,9 +121,7 @@ namespace InsaneScatterbrain.MapGraph
                 availableTiles.RemoveAll(circleIndexes);
             
                 outputMask?.MaskPoint(index);
-                placementCoords.Add(new Vector2Int(index % width, index / width));
-            
-                if (availableTiles.Count == 0) break;
+                placementCoords.Add(new Vector2Int(index % width, index / width));   
             }
 
             var placementsArray = placementCoords.ToArray(); 
